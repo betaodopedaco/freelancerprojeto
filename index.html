@@ -353,348 +353,1985 @@
             text-align: center;
             font-size: 42px;
             margin-bottom: 60px;
-            font-weight: 800;
-            letter-spacing: -0.03em;
             color: var(--primary-dark);
+            font-weight: 800;
+            letter-spacing: -0.025em;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
 
         .feature-card {
+            text-align: center;
+            padding: 48px 32px;
+            border-radius: 20px;
             background: var(--background);
-            padding: 30px;
-            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--border);
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.03);
-            transition: all 0.3s;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(15, 23, 42, 0.08);
+            transform: translateY(-8px);
+            background: var(--surface);
+            box-shadow: 0 24px 48px rgba(15, 23, 42, 0.08);
+            border-color: var(--accent);
         }
 
         .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-base) 0%, var(--primary-dark) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.05);
+        }
+
+        .feature-icon i {
             font-size: 32px;
-            color: var(--primary-base);
-            margin-bottom: 20px;
-            display: inline-block;
-            padding: 12px;
-            background: rgba(30, 41, 59, 0.05);
-            border-radius: 10px;
+            color: white;
         }
 
         .feature-card h3 {
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 22px;
+            margin-bottom: 16px;
             color: var(--primary-dark);
-            margin-bottom: 10px;
-            letter-spacing: -0.01em;
+            font-weight: 700;
         }
 
         .feature-card p {
             color: var(--text-secondary);
-            font-size: 15px;
             line-height: 1.7;
+            font-size: 16px;
         }
 
-        /* ===== CTA ===== */
-        .cta {
-            padding: 80px 20px;
-            background: var(--primary-dark);
-            text-align: center;
+        /* ===== SCREENSHOTS ===== */
+        .screenshots {
+            padding: 100px 20px;
+            background: var(--background);
+            border-top: 1px solid var(--border);
         }
 
-        .cta-title {
-            font-size: 36px;
-            font-weight: 800;
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .screenshot-frame {
+            background: var(--surface);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+            transition: all 0.4s;
+            border: 1px solid var(--border);
+        }
+
+        .screenshot-frame:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 32px 64px rgba(15, 23, 42, 0.12);
+        }
+
+        .screenshot-frame img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .screenshot-label {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .screenshot-label .badge {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* ===== SIGNUP FORM ===== */
+        .signup {
+            padding: 100px 20px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+        }
+
+        .signup-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-base) 100%);
+            border-radius: 24px;
+            padding: 48px;
             color: white;
-            margin-bottom: 16px;
+            box-shadow: 0 32px 64px rgba(15, 23, 42, 0.15);
+        }
+
+        .signup-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .signup-header h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+            font-weight: 800;
             letter-spacing: -0.02em;
         }
 
-        .cta-subtitle {
-            font-size: 18px;
-            color: #94a3b8;
-            margin-bottom: 32px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        .signup-header p {
+            opacity: 0.9;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .signup-form {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 16px;
+            color: var(--text-primary);
+            box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+            background: var(--background);
+            color: var(--text-primary);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-base);
+            box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.1);
+        }
+
+        .terms {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .terms a {
+            color: var(--primary-base);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
         }
 
         /* ===== FOOTER ===== */
         .footer {
-            padding: 40px 20px;
-            background: var(--primary-base);
-            color: #94a3b8;
-            font-size: 14px;
-            text-align: center;
+            background: var(--primary-dark);
+            color: white;
+            padding: 80px 20px 40px;
         }
 
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand .logo {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            color: #cbd5e1;
+            margin-bottom: 32px;
+            line-height: 1.7;
+            font-size: 16px;
+            max-width: 300px;
+        }
+
+        .social-links {
             display: flex;
-            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .social-links a {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-base);
+            transform: translateY(-2px);
+        }
+
+        .footer-links h4 {
+            font-size: 18px;
+            margin-bottom: 24px;
+            color: white;
+            font-weight: 700;
+            letter-spacing: -0.01em;
         }
 
         .footer-links a {
-            color: #94a3b8;
+            display: block;
+            color: #cbd5e1;
             text-decoration: none;
-            margin-left: 20px;
+            margin-bottom: 14px;
             transition: color 0.3s;
+            font-size: 15px;
         }
 
         .footer-links a:hover {
             color: white;
         }
 
-        /* ===== MEDIA QUERIES ===== */
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 14px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ===== DASHBOARD PAGE ===== */
+        .dashboard-container {
+            min-height: 100vh;
+            background: var(--background);
+            padding: 32px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            background: var(--surface);
+            padding: 32px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .header-left h1 {
+            font-size: 36px;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .stats-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: var(--surface);
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border);
+            min-width: 200px;
+        }
+
+        .stats-card i {
+            font-size: 28px;
+            color: var(--primary-base);
+        }
+
+        .stats-card strong {
+            display: block;
+            font-size: 24px;
+            color: var(--primary-dark);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .stats-card span {
+            font-size: 13px;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 28px;
+            margin-bottom: 48px;
+        }
+
+        .recommendation-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+            border-color: var(--accent);
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .company-avatar {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary-base) 0%, var(--primary-dark) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .company-info {
+            flex: 1;
+        }
+
+        .company-info h3 {
+            font-size: 20px;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .company-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            background: var(--background);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            font-size: 13px;
+            margin-right: 10px;
+            font-weight: 500;
+            border: 1px solid var(--border);
+        }
+
+        .company-location {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .company-status .status {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        .status.new {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .status.pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .status.contacted {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .company-details {
+            margin-bottom: 24px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .detail-item i {
+            width: 20px;
+            color: var(--primary-base);
+            text-align: center;
+        }
+
+        .pitch-preview {
+            background: var(--background);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            border-left: 4px solid var(--primary-base);
+            border: 1px solid var(--border);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .card-actions .btn {
+            flex: 1;
+        }
+
+        .next-button-container {
+            text-align: center;
+            margin: 48px 0;
+        }
+
+        .stats-section {
+            margin-top: 48px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 28px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            padding: 28px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+            border-color: var(--accent);
+        }
+
+        .stat-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-base) 0%, var(--primary-dark) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .stat-content h3 {
+            font-size: 32px;
+            color: var(--primary-dark);
+            margin-bottom: 4px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-content p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ===== CONTRACT PAGE ===== */
+        .contract-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 32px;
+            background: var(--background);
+            min-height: 100vh;
+        }
+
+        .contract-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            background: var(--surface);
+            padding: 32px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .contract-info h1 {
+            font-size: 30px;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .contract-meta {
+            display: flex;
+            gap: 28px;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .contract-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contract-actions {
+            display: flex;
+            gap: 14px;
+        }
+
+        .contract-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .contract-document {
+            background: var(--surface);
+            padding: 48px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .contract-header-section {
+            text-align: center;
+            margin-bottom: 48px;
+            padding-bottom: 28px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .contract-header-section h2 {
+            font-size: 28px;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .contract-number {
+            font-size: 15px;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+        }
+
+        .contract-parties {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .party h3 {
+            font-size: 20px;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .party p {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .contract-clause {
+            margin-bottom: 36px;
+        }
+
+        .contract-clause h3 {
+            font-size: 20px;
+            color: var(--primary-dark);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .contract-clause p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 14px;
+            font-size: 16px;
+        }
+
+        .contract-clause ul {
+            margin-left: 28px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .contract-clause li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .contract-signatures {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-top: 72px;
+            padding-top: 48px;
+            border-top: 2px solid var(--border);
+        }
+
+        .signature-party {
+            text-align: center;
+        }
+
+        .signature-line {
+            width: 80%;
+            height: 1px;
+            background: var(--primary-dark);
+            margin: 48px auto 24px;
+        }
+
+        .signature-party p {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .contract-footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-style: italic;
+            font-size: 15px;
+        }
+
+        .contract-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .sidebar-card {
+            background: var(--surface);
+            padding: 28px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .sidebar-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            color: var(--primary-dark);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        .info-item span {
+            color: var(--text-secondary);
+        }
+
+        .info-item strong {
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .status-badge.draft {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .status-badge.current {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .version-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .version-item:last-child {
+            border-bottom: none;
+        }
+
+        .version-item span {
+            color: var(--text-secondary);
+        }
+
+        /* ===== NOTIFICATION ===== */
+        .notification {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: var(--primary-dark);
+            color: white;
+            padding: 18px 28px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 8px 32px rgba(15, 23, 42, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10000;
+            max-width: 400px;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .notification i {
+            font-size: 20px;
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .hero-container {
-                grid-template-columns: 1fr;
-                gap: 50px;
+                gap: 60px;
             }
-
-            .hero-image {
-                order: -1;
-            }
-
+            
             .hero-title {
                 font-size: 48px;
             }
-
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
+            
+            .contract-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
             }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 48px;
             }
-
-            .hero {
-                padding: 80px 20px;
-            }
-
+            
             .hero-title {
-                font-size: 40px;
+                font-size: 42px;
             }
-
+            
             .hero-stats {
-                flex-direction: column;
-                gap: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 32px;
             }
-
-            .features-grid {
+            
+            .contract-parties,
+            .contract-signatures {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            
+            .card-actions {
+                flex-direction: column;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+            
+            .header-right {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .stats-card {
+                width: 100%;
+            }
+            
+            .contract-header {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+            
+            .contract-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .features-grid,
+            .screenshot-grid,
+            .recommendations-grid,
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .footer-links a {
-                margin: 0 10px;
+            
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
             }
         }
     </style>
 </head>
 <body>
-
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <i class="fas fa-robot"></i>
-                Freelancer<span class="logo-highlight">AI</span>
+                <i class="fas fa-bolt"></i>
+                <span>Freelancer<span class="logo-highlight">AI</span></span>
             </div>
             <div class="nav-links">
-                <a href="#features">Recursos</a>
-                <a href="#how-it-works">Como Funciona</a>
-                <a href="#pricing">Preços</a>
-                <a href="#contact">Contato</a>
+                <a href="#" onclick="showPage('landing')">Home</a>
+                <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+                <a href="#" onclick="showPage('contract')">Contract</a>
+                <button class="btn btn-outline" onclick="showPage('landing')">Free Trial</button>
             </div>
-            <a href="#" class="btn btn-primary">Começar Agora</a>
         </div>
     </nav>
 
-    <main>
-        <!-- Landing Page -->
-        <section id="landing" class="page active">
-            <div class="hero">
-                <div class="hero-container">
-                    <div class="hero-content">
-                        <h1 class="hero-title">
-                            Automatize a Aquisição de Clientes com <span class="gradient-text">Inteligência Artificial</span>
-                        </h1>
-                        <p class="hero-subtitle">
-                            Freelancer AI é a sua solução completa para encontrar, qualificar e fechar novos projetos. Deixe a IA fazer o trabalho pesado e foque no que você faz de melhor.
-                        </p>
-                        <a href="#" class="btn btn-primary btn-lg">
-                            <i class="fas fa-rocket"></i> Iniciar Teste Gratuito
-                        </a>
-                        <div class="hero-stats">
-                            <div class="stat">
-                                <h3>+500</h3>
-                                <p>Freelancers Satisfeitos</p>
-                            </div>
-                            <div class="stat">
-                                <h3>85%</h3>
-                                <p>Taxa de Sucesso em Propostas</p>
-                            </div>
-                            <div class="stat">
-                                <h3>10x</h3>
-                                <p>Mais Tempo Livre</p>
-                            </div>
+    <!-- Landing Page -->
+    <div id="landing" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="gradient-text">Win clients</span><br>
+                        automatically
+                    </h1>
+                    <p class="hero-subtitle">
+                        Spending hours hunting for clients? We find businesses that need your services and generate personalized pitches automatically. Focus on your work, leave prospecting to us.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>+500</h3>
+                            <p>Active Freelancers</p>
+                        </div>
+                        <div class="stat">
+                            <h3>+2.5k</h3>
+                            <p>Clients Found</p>
+                        </div>
+                        <div class="stat">
+                            <h3>95%</h3>
+                            <p>Success Rate</p>
                         </div>
                     </div>
-                    <div class="hero-image">
-                        <div class="mockup">
-                            <div class="mockup-header">
-                                <div class="dots">
-                                    <div class="dot red"></div>
-                                    <div class="dot yellow"></div>
-                                    <div class="dot green"></div>
-                                </div>
-                                <div class="badge">Recomendações em Tempo Real</div>
+                    <button class="btn btn-primary btn-lg" onclick="showPage('dashboard')">
+                        <i class="fas fa-rocket"></i> Start 7-Day Free Trial
+                    </button>
+                </div>
+                <div class="hero-image">
+                    <div class="mockup">
+                        <div class="mockup-header">
+                            <div class="dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
                             </div>
-                            <div class="recommendation-list">
-                                <div class="recommendation-item">
-                                    <div>
-                                        <div class="company-name">Projeto de Desenvolvimento Web</div>
-                                        <div class="company-type">Orçamento: R$ 5.000 - R$ 10.000</div>
-                                    </div>
-                                    <a href="#" class="btn btn-success">Candidatar-se</a>
-                                </div>
-                                <div class="recommendation-item">
-                                    <div>
-                                        <div class="company-name">Criação de Conteúdo para Blog</div>
-                                        <div class="company-type">Orçamento: R$ 1.500 - R$ 3.000</div>
-                                    </div>
-                                    <a href="#" class="btn btn-success">Candidatar-se</a>
-                                </div>
-                                <div class="recommendation-item">
-                                    <div>
-                                        <div class="company-name">Consultoria em Marketing Digital</div>
-                                        <div class="company-type">Orçamento: R$ 8.000+</div>
-                                    </div>
-                                    <a href="#" class="btn btn-success">Candidatar-se</a>
-                                </div>
-                                <div class="recommendation-item">
-                                    <div>
-                                        <div class="company-name">Design de Interface de Usuário (UI/UX)</div>
-                                        <div class="company-type">Orçamento: R$ 3.000 - R$ 6.000</div>
-                                    </div>
-                                    <a href="#" class="btn btn-success">Candidatar-se</a>
-                                </div>
+                        </div>
+                        <div class="mockup-content">
+                            <h4><i class="fas fa-building"></i> Recommended Companies</h4>
+                            <div class="recommendation-item">
+                                <div class="company-name">Central Cafe</div>
+                                <div class="company-type">Café • São Paulo</div>
+                                <button class="btn btn-small" onclick="showPage('dashboard')">View Pitch</button>
+                            </div>
+                            <div class="recommendation-item">
+                                <div class="company-name">Tech Solutions</div>
+                                <div class="company-type">IT • Rio de Janeiro</div>
+                                <button class="btn btn-small" onclick="showPage('dashboard')">View Pitch</button>
+                            </div>
+                            <div class="recommendation-item">
+                                <div class="company-name">Marketing Pro</div>
+                                <div class="company-type">Marketing • BH</div>
+                                <button class="btn btn-small" onclick="showPage('dashboard')">View Pitch</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Features Section -->
-            <section id="features" class="features">
-                <div class="container">
-                    <h2 class="section-title">Recursos que Vão Transformar Seu Negócio</h2>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <i class="fas fa-search feature-icon"></i>
-                            <h3>Busca Inteligente de Projetos</h3>
-                            <p>Nossa IA monitora as principais plataformas de freelancers, filtrando e apresentando apenas os projetos que realmente se encaixam no seu perfil e nas suas metas.</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-file-alt feature-icon"></i>
-                            <h3>Geração de Propostas Otimizadas</h3>
-                            <p>Crie propostas personalizadas e persuasivas em segundos. A IA analisa o projeto e gera um texto que maximiza suas chances de ser contratado.</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-comments feature-icon"></i>
-                            <h3>Qualificação de Leads Automática</h3>
-                            <p>Receba alertas sobre a intenção de contratação do cliente e use nossos scripts de IA para responder a perguntas iniciais, economizando seu tempo.</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-chart-line feature-icon"></i>
-                            <h3>Análise de Mercado Competitiva</h3>
-                            <p>Entenda o que seus concorrentes estão fazendo. Obtenha insights sobre preços, prazos e abordagens mais eficazes para cada tipo de projeto.</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-calendar-check feature-icon"></i>
-                            <h3>Agendamento Integrado</h3>
-                            <p>Conecte sua agenda e permita que clientes qualificados agendem reuniões diretamente com você, eliminando a troca de e-mails.</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-shield-alt feature-icon"></i>
-                            <h3>Segurança e Privacidade</h3>
-                            <p>Seus dados e as informações dos clientes são tratados com a máxima segurança. Focamos em conformidade e proteção de dados em todas as etapas.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- How It Works Section -->
-            <section id="how-it-works" class="features" style="background: var(--background);">
-                <div class="container">
-                    <h2 class="section-title">Como Funciona em 3 Passos Simples</h2>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <i class="fas fa-user-cog feature-icon"></i>
-                            <h3>1. Configure Seu Perfil</h3>
-                            <p>Informe suas habilidades, nicho de mercado e o tipo de projeto que você deseja. Nossa IA aprende com suas preferências.</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-magic feature-icon"></i>
-                            <h3>2. A IA Encontra e Propõe</h3>
-                            <p>A IA monitora, filtra e gera propostas otimizadas para os melhores projetos, enviando-as para sua aprovação final.</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-handshake feature-icon"></i>
-                            <h3>3. Feche o Negócio</h3>
-                            <p>Você recebe o contato de clientes já qualificados e prontos para fechar. Foco total na execução do projeto.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA Section -->
-            <section class="cta">
-                <h2 class="cta-title">Pronto para Multiplicar Seus Clientes?</h2>
-                <p class="cta-subtitle">Junte-se a centenas de freelancers que estão usando a IA para escalar seus negócios e recuperar seu tempo.</p>
-                <a href="#" class="btn btn-outline btn-lg" style="color: white; border-color: white;">
-                    <i class="fas fa-arrow-right"></i> Começar Agora
-                </a>
-            </section>
         </section>
-    </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2024 Freelancer AI. Todos os direitos reservados.</p>
-            <div class="footer-links">
-                <a href="#">Termos de Serviço</a>
-                <a href="#">Política de Privacidade</a>
-                <a href="#">Suporte</a>
+        <!-- Features -->
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">How It Works</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-search-location"></i>
+                        </div>
+                        <h3>1. Smart Search</h3>
+                        <p>We find nearby businesses that actually need your services using geolocation and AI.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>2. Personalized Pitch</h3>
+                        <p>We generate unique prospecting emails for each company, increasing your response rates.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3>3. Ready Contracts</h3>
+                        <p>Niched contracts, ready to send as soon as the client shows interest.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots -->
+        <section class="screenshots">
+            <div class="container">
+                <h2 class="section-title">See the App in Action</h2>
+                <div class="screenshot-grid">
+                    <div class="screenshot">
+                        <div class="screenshot-frame">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="App Dashboard">
+                            <div class="screenshot-label">
+                                <span class="badge">1</span>
+                                <p>Dashboard with daily recommendations</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screenshot">
+                        <div class="screenshot-frame">
+                            <img src="https://i.ibb.co/Xr5WMbPJ/Chat-GPT-Image-9-de-dez-de-2025-12-21-51.png" alt="AI Generated Pitch">
+                            <div class="screenshot-label">
+                                <span class="badge">2</span>
+                                <p>AI-generated personalized pitch</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screenshot">
+                        <div class="screenshot-frame">
+                            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Generated Contract">
+                            <div class="screenshot-label">
+                                <span class="badge">3</span>
+                                <p>Ready personalized contract</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Signup Form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-card">
+                    <div class="signup-header">
+                        <h2>Start Your Journey Today</h2>
+                        <p>7-day free trial • No credit card required</p>
+                    </div>
+                    <form id="signupForm" class="signup-form" onsubmit="handleSignup(event)">
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i> Your Best Email
+                            </label>
+                            <input type="email" id="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="niche">
+                                <i class="fas fa-briefcase"></i> Your Primary Niche
+                            </label>
+                            <select id="niche" required>
+                                <option value="">Select your niche</option>
+                                <option value="web-dev">Web Development</option>
+                                <option value="design">Graphic Design</option>
+                                <option value="marketing">Digital Marketing</option>
+                                <option value="writing">Copywriting</option>
+                                <option value="video">Video Editing</option>
+                                <option value="social">Social Media</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="custom-niche" class="custom-niche-label">
+                                <i class="fas fa-pen"></i> If "Other", specify:
+                            </label>
+                            <input type="text" id="custom-niche" placeholder="Ex: SEO Consulting">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-lock"></i> Create Free Account
+                        </button>
+                        <p class="terms">
+                            By creating an account, you agree to our 
+                            <a href="#">Terms of Service</a> and 
+                            <a href="#">Privacy Policy</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <i class="fas fa-bolt"></i>
+                            <span>Freelancer<span class="logo-highlight">AI</span></span>
+                        </div>
+                        <p>Automating client acquisition for freelancers worldwide.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Product</h4>
+                        <a href="#" onclick="showPage('landing')">Features</a>
+                        <a href="#" onclick="showPage('landing')">Demo</a>
+                        <a href="#">Pricing</a>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Support</h4>
+                        <a href="#">FAQ</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Tutorials</a>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Legal</h4>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Privacy</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 FreelancerAI. All rights reserved.</p>
+                    <p>Built with <i class="fas fa-heart" style="color: #ef4444;"></i> for freelancers</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard" class="page">
+        <div class="dashboard-container">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Today's Recommendations</h1>
+                    <p class="subtitle">5 companies found for you today</p>
+                </div>
+                <div class="header-right">
+                    <div class="stats-card">
+                        <i class="fas fa-calendar-day"></i>
+                        <div>
+                            <strong>5/5</strong>
+                            <span>Recommendations used</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="loadMoreRecommendations()">
+                        <i class="fas fa-sync"></i> Refresh
+                    </button>
+                </div>
+            </header>
+
+            <!-- Recommendations Grid -->
+            <section class="recommendations-grid">
+                <!-- Company 1 -->
+                <div class="recommendation-card">
+                    <div class="company-header">
+                        <div class="company-avatar">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <div class="company-info">
+                            <h3>Central Cafe</h3>
+                            <span class="company-tag">Café</span>
+                            <span class="company-location">
+                                <i class="fas fa-map-marker-alt"></i> São Paulo, SP
+                            </span>
+                        </div>
+                        <div class="company-status">
+                            <span class="status new">NEW</span>
+                        </div>
+                    </div>
+                    <div class="company-details">
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(11) 9999-8888</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-globe"></i>
+                            <span>centralcafe.com.br</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@centralcafe.com</span>
+                        </div>
+                    </div>
+                    <div class="pitch-preview">
+                        <p class="pitch-text">
+                            "Hello Central Cafe, I'm a digital marketing specialist and noticed your online presence could be optimized to attract more customers..."
+                        </p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-outline" onclick="copyPitch(1)">
+                            <i class="far fa-copy"></i> Copy Pitch
+                        </button>
+                        <button class="btn btn-primary" onclick="showPage('contract')">
+                            <i class="fas fa-file-contract"></i> View Contract
+                        </button>
+                        <button class="btn btn-success" onclick="markContacted(1)">
+                            <i class="fas fa-check"></i> Contacted
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Company 2 -->
+                <div class="recommendation-card">
+                    <div class="company-header">
+                        <div class="company-avatar">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="company-info">
+                            <h3>Tech Solutions</h3>
+                            <span class="company-tag">IT & Software</span>
+                            <span class="company-location">
+                                <i class="fas fa-map-marker-alt"></i> Rio de Janeiro, RJ
+                            </span>
+                        </div>
+                        <div class="company-status">
+                            <span class="status pending">PENDING</span>
+                        </div>
+                    </div>
+                    <div class="company-details">
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(21) 7777-6666</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-globe"></i>
+                            <span>techsolutions.com.br</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>sales@techsolutions.com</span>
+                        </div>
+                    </div>
+                    <div class="pitch-preview">
+                        <p class="pitch-text">
+                            "Dear Tech Solutions, your website might be missing conversion opportunities. As a specialized developer, I can help improve performance and UX..."
+                        </p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-outline" onclick="copyPitch(2)">
+                            <i class="far fa-copy"></i> Copy Pitch
+                        </button>
+                        <button class="btn btn-primary" onclick="showPage('contract')">
+                            <i class="fas fa-file-contract"></i> View Contract
+                        </button>
+                        <button class="btn btn-success" onclick="markContacted(2)">
+                            <i class="fas fa-check"></i> Contacted
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Company 3 -->
+                <div class="recommendation-card">
+                    <div class="company-header">
+                        <div class="company-avatar">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="company-info">
+                            <h3>Design Studio</h3>
+                            <span class="company-tag">Graphic Design</span>
+                            <span class="company-location">
+                                <i class="fas fa-map-marker-alt"></i> Belo Horizonte, MG
+                            </span>
+                        </div>
+                        <div class="company-status">
+                            <span class="status contacted">CONTACTED</span>
+                        </div>
+                    </div>
+                    <div class="company-details">
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(31) 5555-4444</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-globe"></i>
+                            <span>designstudio.com.br</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>projects@designstudio.com</span>
+                        </div>
+                    </div>
+                    <div class="pitch-preview">
+                        <p class="pitch-text">
+                            "Hello Design Studio, I noticed your visual identity could be updated to better reflect your market positioning. I can help create a new creative direction..."
+                        </p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-outline" onclick="copyPitch(3)">
+                            <i class="far fa-copy"></i> Copy Pitch
+                        </button>
+                        <button class="btn btn-primary" onclick="showPage('contract')">
+                            <i class="fas fa-file-contract"></i> View Contract
+                        </button>
+                        <button class="btn btn-success" onclick="markContacted(3)">
+                            <i class="fas fa-check"></i> Contacted
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Company 4 -->
+                <div class="recommendation-card">
+                    <div class="company-header">
+                        <div class="company-avatar">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="company-info">
+                            <h3>Local Market</h3>
+                            <span class="company-tag">Retail</span>
+                            <span class="company-location">
+                                <i class="fas fa-map-marker-alt"></i> Curitiba, PR
+                            </span>
+                        </div>
+                        <div class="company-status">
+                            <span class="status new">NEW</span>
+                        </div>
+                    </div>
+                    <div class="company-details">
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(41) 3333-2222</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-globe"></i>
+                            <span>localmarket.com.br</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>service@localmarket.com</span>
+                        </div>
+                    </div>
+                    <div class="pitch-preview">
+                        <p class="pitch-text">
+                            "Dear Local Market, I can help increase your online sales with digital marketing strategies specifically for the food retail sector..."
+                        </p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-outline" onclick="copyPitch(4)">
+                            <i class="far fa-copy"></i> Copy Pitch
+                        </button>
+                        <button class="btn btn-primary" onclick="showPage('contract')">
+                            <i class="fas fa-file-contract"></i> View Contract
+                        </button>
+                        <button class="btn btn-success" onclick="markContacted(4)">
+                            <i class="fas fa-check"></i> Contacted
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Company 5 -->
+                <div class="recommendation-card">
+                    <div class="company-header">
+                        <div class="company-avatar">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="company-info">
+                            <h3>Health Clinic</h3>
+                            <span class="company-tag">Healthcare</span>
+                            <span class="company-location">
+                                <i class="fas fa-map-marker-alt"></i> Porto Alegre, RS
+                            </span>
+                        </div>
+                        <div class="company-status">
+                            <span class="status pending">PENDING</span>
+                        </div>
+                    </div>
+                    <div class="company-details">
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(51) 1111-0000</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-globe"></i>
+                            <span>healthclinic.com.br</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@healthclinic.com</span>
+                        </div>
+                    </div>
+                    <div class="pitch-preview">
+                        <p class="pitch-text">
+                            "Hello Health Clinic, I've specialized in marketing for the healthcare sector and can help attract more patients through ethical and effective digital strategies..."
+                        </p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-outline" onclick="copyPitch(5)">
+                            <i class="far fa-copy"></i> Copy Pitch
+                        </button>
+                        <button class="btn btn-primary" onclick="showPage('contract')">
+                            <i class="fas fa-file-contract"></i> View Contract
+                        </button>
+                        <button class="btn btn-success" onclick="markContacted(5)">
+                            <i class="fas fa-check"></i> Contacted
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Next Button -->
+            <div class="next-button-container">
+                <button class="btn btn-lg btn-primary" onclick="showMoreCompanies()">
+                    <i class="fas fa-arrow-right"></i> Next Companies
+                    <span class="badge">New in 24h</span>
+                </button>
+            </div>
+
+            <!-- Stats -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>25</h3>
+                            <p>Companies this month</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-envelope-open"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>68%</h3>
+                            <p>Response rate</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>3</h3>
+                            <p>Contracts closed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>R$ 15k</h3>
+                            <p>Revenue generated</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Contract Page -->
+    <div id="contract" class="page">
+        <div class="contract-container">
+            <!-- Contract Header -->
+            <div class="contract-header">
+                <div class="contract-info">
+                    <h1>Service Agreement</h1>
+                    <div class="contract-meta">
+                        <span class="contract-client">
+                            <i class="fas fa-building"></i> Central Cafe
+                        </span>
+                        <span class="contract-date">
+                            <i class="fas fa-calendar"></i> Generated: 12/15/2024
+                        </span>
+                        <span class="contract-status">
+                            <i class="fas fa-circle" style="color: #10b981;"></i> Ready to send
+                        </span>
+                    </div>
+                </div>
+                <div class="contract-actions">
+                    <button class="btn btn-outline" onclick="copyContractText()">
+                        <i class="far fa-copy"></i> Copy Text
+                    </button>
+                    <button class="btn btn-primary" onclick="downloadContractPDF()">
+                        <i class="fas fa-file-pdf"></i> Download PDF
+                    </button>
+                    <button class="btn btn-success" onclick="sendContractEmail()">
+                        <i class="fas fa-paper-plane"></i> Send by Email
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contract Content -->
+            <div class="contract-content">
+                <div class="contract-document">
+                    <div class="contract-header-section">
+                        <h2>PROFESSIONAL SERVICES AGREEMENT</h2>
+                        <p class="contract-number">AGREEMENT NO. FL-2024-0015</p>
+                    </div>
+
+                    <div class="contract-parties">
+                        <div class="party">
+                            <h3>CLIENT</h3>
+                            <p><strong>Central Cafe</strong></p>
+                            <p>Tax ID: 12.345.678/0001-90</p>
+                            <p>Address: Av. Paulista, 1000 - São Paulo/SP</p>
+                            <p>Email: contact@centralcafe.com.br</p>
+                            <p>Phone: (11) 9999-8888</p>
+                        </div>
+                        <div class="party">
+                            <h3>CONTRACTOR</h3>
+                            <p><strong>John Smith</strong></p>
+                            <p>SSN: 123.456.789-00</p>
+                            <p>Specialty: Digital Marketing</p>
+                            <p>Email: john@example.com</p>
+                            <p>Phone: (11) 98888-7777</p>
+                        </div>
+                    </div>
+
+                    <div class="contract-clause">
+                        <h3>CLAUSE ONE - SCOPE OF SERVICES</h3>
+                        <p>This agreement covers the provision of <strong>digital marketing</strong> services by the CONTRACTOR to the CLIENT, including:</p>
+                        <ul>
+                            <li>Analysis and optimization of online presence</li>
+                            <li>Content strategy development</li>
+                            <li>Social media management</li>
+                            <li>Monthly performance report</li>
+                        </ul>
+                    </div>
+
+                    <div class="contract-clause">
+                        <h3>CLAUSE TWO - TERM</h3>
+                        <p>This agreement is valid for <strong>6 (six) months</strong>, starting from the signing date, renewable by mutual agreement between the parties.</p>
+                    </div>
+
+                    <div class="contract-clause">
+                        <h3>CLAUSE THREE - PAYMENT TERMS</h3>
+                        <p>The total value of services is <strong>R$ 3,500.00 (three thousand five hundred reais)</strong> monthly, to be paid by the 5th business day of each month, via bank transfer to the account indicated by the CONTRACTOR.</p>
+                    </div>
+
+                    <div class="contract-clause">
+                        <h3>CLAUSE FOUR - OBLIGATIONS OF THE PARTIES</h3>
+                        <p><strong>4.1.</strong> The CONTRACTOR agrees to perform services with diligence, care and technical competence, using the best available resources.</p>
+                        <p><strong>4.2.</strong> The CLIENT agrees to provide all information necessary for service execution within the agreed timeframe.</p>
+                    </div>
+
+                    <div class="contract-clause">
+                        <h3>CLAUSE FIVE - CONFIDENTIALITY</h3>
+                        <p>The parties agree to maintain confidentiality of all proprietary information accessed during this agreement's execution.</p>
+                    </div>
+
+                    <div class="contract-clause">
+                        <h3>CLAUSE SIX - TERMINATION</h3>
+                        <p>This agreement may be terminated by either party with 30 (thirty) days written notice.</p>
+                    </div>
+
+                    <div class="contract-clause">
+                        <h3>CLAUSE SEVEN - GOVERNING LAW</h3>
+                        <p>The courts of São Paulo/SP shall have jurisdiction over any disputes arising from this agreement.</p>
+                    </div>
+
+                    <div class="contract-signatures">
+                        <div class="signature-party">
+                            <div class="signature-line"></div>
+                            <p><strong>Central Cafe</strong></p>
+                            <p>___________________________________</p>
+                            <p>Name: _____________________________</p>
+                            <p>Tax ID: _________________________</p>
+                        </div>
+                        <div class="signature-party">
+                            <div class="signature-line"></div>
+                            <p><strong>John Smith</strong></p>
+                            <p>___________________________________</p>
+                            <p>Name: John Smith</p>
+                            <p>SSN: 123.456.789-00</p>
+                        </div>
+                    </div>
+
+                    <div class="contract-footer">
+                        <p>São Paulo, December 15, 2024.</p>
+                    </div>
+                </div>
+
+                <!-- Contract Sidebar -->
+                <div class="contract-sidebar">
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-info-circle"></i> Contract Information</h3>
+                        <div class="info-item">
+                            <span>Total Value:</span>
+                            <strong>R$ 21,000.00</strong>
+                        </div>
+                        <div class="info-item">
+                            <span>Duration:</span>
+                            <strong>6 months</strong>
+                        </div>
+                        <div class="info-item">
+                            <span>Status:</span>
+                            <span class="status-badge draft">Draft</span>
+                        </div>
+                        <div class="info-item">
+                            <span>Acceptance Period:</span>
+                            <strong>7 days</strong>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-file-signature"></i> Digital Signature</h3>
+                        <p>This contract can be digitally signed using our platform.</p>
+                        <button class="btn btn-primary btn-block" onclick="signContract()">
+                            <i class="fas fa-signature"></i> Sign Contract
+                        </button>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-history"></i> Version History</h3>
+                        <div class="version-item">
+                            <span>v1.0</span>
+                            <span>12/15/2024</span>
+                            <span class="status-badge current">Current</span>
+                        </div>
+                        <div class="version-item">
+                            <span>v0.2</span>
+                            <span>12/14/2024</span>
+                            <span>Draft</span>
+                        </div>
+                        <div class="version-item">
+                            <span>v0.1</span>
+                            <span>12/13/2024</span>
+                            <span>Initial</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-tools"></i> Customize</h3>
+                        <button class="btn btn-outline btn-block" onclick="editContract()">
+                            <i class="fas fa-edit"></i> Edit Clauses
+                        </button>
+                        <button class="btn btn-outline btn-block" onclick="duplicateContract()">
+                            <i class="fas fa-copy"></i> Duplicate Contract
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Pitch copied to clipboard!</span>
+    </div>
 
     <script>
-        // Simple script to handle navigation if needed, though this is a single-page app
-        document.querySelectorAll('.nav-links a, .btn').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+        // ===== UTILITY FUNCTIONS =====
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            if (!notification) return;
+            
+            notification.querySelector('span').textContent = message;
+            
+            // Change color based on type
+            if (type === 'error') {
+                notification.style.background = '#ef4444';
+            } else if (type === 'warning') {
+                notification.style.background = '#f59e0b';
+            } else {
+                notification.style.background = 'var(--primary-dark)';
+            }
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Copy text to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('Text copied to clipboard!');
+            }).catch(err => {
+                console.error('Error copying:', err);
+                showNotification('Error copying text', 'error');
+            });
+        }
+
+        // ===== PAGE NAVIGATION =====
+
+        // Show specific page
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            const page = document.getElementById(pageId);
+            if (page) {
+                page.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Update URL hash
+            window.location.hash = pageId;
+        }
+
+        // Check URL hash on load
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showPage(hash);
+            } else {
+                showPage('landing');
+            }
+        });
+
+        // ===== LANDING PAGE FUNCTIONS =====
+
+        // Signup form submission
+        function handleSignup(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const niche = document.getElementById('niche').value;
+            const customNiche = document.getElementById('custom-niche').value;
+            
+            // Simple validation
+            if (!email || !niche) {
+                showNotification('Please fill all required fields', 'error');
+                return;
+            }
+            
+            // Simulate API call
+            showNotification('Account created! Redirecting to dashboard...');
+            
+            // Redirect to dashboard after 1 second
+            setTimeout(() => {
+                showPage('dashboard');
+            }, 1000);
+        }
+
+        // ===== DASHBOARD FUNCTIONS =====
+
+        // Copy pitch to clipboard
+        function copyPitch(companyId) {
+            const pitches = [
+                `Subject: Partnership Opportunity for Central Cafe
+
+Dear Central Cafe Team,
+
+I'm a digital marketing specialist and noticed your cafe has significant untapped online potential. 
+
+I can help:
+- Increase your social media visibility
+- Create engaging content for your audience
+- Implement customer loyalty strategies
+- Boost online sales by up to 30%
+
+Would you be open to a brief conversation to discuss how I can help?
+
+Best regards,
+[Your Name]
+[Your Contact]`,
+
+                `Subject: Website Optimization for Tech Solutions
+
+Dear Tech Solutions,
+
+After reviewing your website, I've identified opportunities to improve conversion rates and performance. As a specialized developer, I can:
+
+- Optimize page loading speed
+- Enhance user experience design
+- Implement advanced technical SEO
+- Increase conversion rates by 25%
+
+Could we schedule a call to discuss potential improvements?
+
+Best regards,
+[Your Name]
+[Your Contact]`,
+
+                `Subject: Visual Identity Update for Design Studio
+
+Hello Design Studio,
+
+I noticed your visual identity could be updated to better reflect your premium market positioning. As a design specialist, I can:
+
+- Create a modern new visual identity
+- Develop a consistent design system
+- Update your online portfolio
+- Create more impactful marketing materials
+
+Shall we schedule a conversation about your needs?
+
+Best regards,
+[Your Name]
+[Your Contact]`,
+
+                `Subject: Sales Growth for Local Market
+
+Dear Local Market Team,
+
+I've specialized in digital marketing for the food retail sector and can help your business:
+
+- Increase online traffic to your store
+- Implement local marketing strategies
+- Create effective promotional campaigns
+- Improve customer experience
+
+I'd love to show you how we could work together.
+
+Best regards,
+[Your Name]
+[Your Contact]`,
+
+                `Subject: Digital Marketing for Health Clinic
+
+Hello Health Clinic Team,
+
+As a healthcare marketing specialist, I can help your clinic:
+
+- Attract more qualified patients
+- Build a trustworthy online presence
+- Create educational patient content
+- Implement ethical marketing strategies
+
+Would you be interested in discussing how I can contribute?
+
+Best regards,
+[Your Name]
+[Your Contact]`
+            ];
+
+            const pitchIndex = (companyId - 1) % pitches.length;
+            copyToClipboard(pitches[pitchIndex]);
+        }
+
+        // Mark as contacted
+        function markContacted(companyId) {
+            const statusElements = document.querySelectorAll('.recommendation-card');
+            if (statusElements[companyId - 1]) {
+                const statusElement = statusElements[companyId - 1].querySelector('.company-status .status');
+                if (statusElement) {
+                    statusElement.textContent = 'CONTACTED';
+                    statusElement.className = 'status contacted';
+                    showNotification('Company marked as contacted!');
                 }
+            }
+        }
+
+        // Load more recommendations
+        function loadMoreRecommendations() {
+            showNotification('Fetching new recommendations...');
+            // Simulate API call
+            setTimeout(() => {
+                showNotification('New recommendations loaded!');
+            }, 1500);
+        }
+
+        // Show more companies
+        function showMoreCompanies() {
+            showNotification('New companies available in 24 hours!');
+        }
+
+        // ===== CONTRACT PAGE FUNCTIONS =====
+
+        // Copy contract text
+        function copyContractText() {
+            const contractElement = document.querySelector('.contract-document');
+            if (contractElement) {
+                const contractText = contractElement.innerText;
+                copyToClipboard(contractText);
+            }
+        }
+
+        // Download contract as PDF
+        function downloadContractPDF() {
+            showNotification('Generating PDF...');
+            // In a real app, this would generate and download a PDF
+            setTimeout(() => {
+                showNotification('PDF downloaded successfully!');
+                
+                // Create a fake download
+                const element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent('Freelancer AI Service Agreement'));
+                element.setAttribute('download', 'freelancer-ai-agreement.pdf');
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+            }, 2000);
+        }
+
+        // Send contract via email
+        function sendContractEmail() {
+            const email = prompt('What email should we send the contract to?', 'client@company.com');
+            if (email) {
+                showNotification(`Contract sent to ${email}`);
+            }
+        }
+
+        // Sign contract
+        function signContract() {
+            if (confirm('Do you want to digitally sign this contract?')) {
+                showNotification('Contract signed successfully!');
+                
+                // Update status
+                const statusBadge = document.querySelector('.status-badge.draft');
+                if (statusBadge) {
+                    statusBadge.textContent = 'SIGNED';
+                    statusBadge.className = 'status-badge current';
+                }
+            }
+        }
+
+        // Edit contract
+        function editContract() {
+            showNotification('Edit mode activated. Feature in development...');
+        }
+
+        // Duplicate contract
+        function duplicateContract() {
+            if (confirm('Do you want to duplicate this contract?')) {
+                showNotification('Contract duplicated successfully!');
+            }
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the app
+            console.log('Freelancer AI MVP initialized!');
+            
+            // Add smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
         });
     </script>
