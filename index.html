@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer AI - Automate Client Acquisition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #111827;
+            background-color: #f9fafb;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== MONOCHROME COLOR SYSTEM ===== */
+        :root {
+            --primary-base: #1e293b;      /* Deep slate - Excellence */
+            --primary-light: #475569;     /* Medium slate */
+            --primary-dark: #0f172a;      /* Dark slate */
+            --accent: #64748b;            /* Subtle accent */
+            --surface: #ffffff;           /* White surface */
+            --background: #f8fafc;        /* Light background */
+            --text-primary: #111827;      /* Primary text */
+            --text-secondary: #4b5563;    /* Secondary text */
+            --border: #e5e7eb;           /* Border color */
+            --success: #059669;          /* Success green */
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 14px;
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-base) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: 1px solid var(--primary-dark);
+            box-shadow: 0 4px 6px rgba(15, 23, 42, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-base) 100%);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-base);
+            border: 1.5px solid var(--primary-base);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-base);
+            color: white;
+            border-color: var(--primary-base);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background: #047857;
+            transform: translateY(-2px);
+        }
+
+        .btn-lg {
+            padding: 16px 32px;
+            font-size: 16px;
+        }
+
+        .btn-block {
+            width: 100%;
+            display: block;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--accent);
+            color: white;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: var(--surface);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -0.025em;
+        }
+
+        .logo i {
+            color: var(--primary-base);
+            font-size: 26px;
+        }
+
+        .logo-highlight {
+            color: var(--primary-dark);
+            position: relative;
+        }
+
+        .logo-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* ===== PAGES ===== */
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ===== LANDING PAGE ===== */
+        .hero {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--background) 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 56px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--primary-dark);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-base) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            font-weight: 400;
+            max-width: 500px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        .stat h3 {
+            font-size: 32px;
+            color: var(--primary-base);
+            margin-bottom: 4px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .stat p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .mockup {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+            max-width: 420px;
+            width: 100%;
+            border: 1px solid var(--border);
+        }
+
+        .mockup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red { background: #ef4444; }
+        .dot.yellow { background: #eab308; }
+        .dot.green { background: #22c55e; }
+
+        .recommendation-item {
+            background: var(--background);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .recommendation-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+            border-color: var(--accent);
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 15px;
+        }
+
+        .company-type {
+            font-size: 12px;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+        }
+
+        /* ===== FEATURES ===== */
+        .features {
+            padding: 100px 20px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--primary-dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--background);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.03);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(15, 23, 42, 0.08);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            color: var(--primary-base);
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 12px;
+            background: rgba(30, 41, 59, 0.05);
+            border-radius: 10px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* ===== CTA ===== */
+        .cta {
+            padding: 80px 20px;
+            background: var(--primary-dark);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-subtitle {
+            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 40px 20px;
+            background: var(--primary-base);
+            color: #94a3b8;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* ===== MEDIA QUERIES ===== */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 80px 20px;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .footer-links a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                Freelancer<span class="logo-highlight">AI</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Recursos</a>
+                <a href="#how-it-works">Como Funciona</a>
+                <a href="#pricing">Preços</a>
+                <a href="#contact">Contato</a>
+            </div>
+            <a href="#" class="btn btn-primary">Começar Agora</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Landing Page -->
+        <section id="landing" class="page active">
+            <div class="hero">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            Automatize a Aquisição de Clientes com <span class="gradient-text">Inteligência Artificial</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Freelancer AI é a sua solução completa para encontrar, qualificar e fechar novos projetos. Deixe a IA fazer o trabalho pesado e foque no que você faz de melhor.
+                        </p>
+                        <a href="#" class="btn btn-primary btn-lg">
+                            <i class="fas fa-rocket"></i> Iniciar Teste Gratuito
+                        </a>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <h3>+500</h3>
+                                <p>Freelancers Satisfeitos</p>
+                            </div>
+                            <div class="stat">
+                                <h3>85%</h3>
+                                <p>Taxa de Sucesso em Propostas</p>
+                            </div>
+                            <div class="stat">
+                                <h3>10x</h3>
+                                <p>Mais Tempo Livre</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="mockup">
+                            <div class="mockup-header">
+                                <div class="dots">
+                                    <div class="dot red"></div>
+                                    <div class="dot yellow"></div>
+                                    <div class="dot green"></div>
+                                </div>
+                                <div class="badge">Recomendações em Tempo Real</div>
+                            </div>
+                            <div class="recommendation-list">
+                                <div class="recommendation-item">
+                                    <div>
+                                        <div class="company-name">Projeto de Desenvolvimento Web</div>
+                                        <div class="company-type">Orçamento: R$ 5.000 - R$ 10.000</div>
+                                    </div>
+                                    <a href="#" class="btn btn-success">Candidatar-se</a>
+                                </div>
+                                <div class="recommendation-item">
+                                    <div>
+                                        <div class="company-name">Criação de Conteúdo para Blog</div>
+                                        <div class="company-type">Orçamento: R$ 1.500 - R$ 3.000</div>
+                                    </div>
+                                    <a href="#" class="btn btn-success">Candidatar-se</a>
+                                </div>
+                                <div class="recommendation-item">
+                                    <div>
+                                        <div class="company-name">Consultoria em Marketing Digital</div>
+                                        <div class="company-type">Orçamento: R$ 8.000+</div>
+                                    </div>
+                                    <a href="#" class="btn btn-success">Candidatar-se</a>
+                                </div>
+                                <div class="recommendation-item">
+                                    <div>
+                                        <div class="company-name">Design de Interface de Usuário (UI/UX)</div>
+                                        <div class="company-type">Orçamento: R$ 3.000 - R$ 6.000</div>
+                                    </div>
+                                    <a href="#" class="btn btn-success">Candidatar-se</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <section id="features" class="features">
+                <div class="container">
+                    <h2 class="section-title">Recursos que Vão Transformar Seu Negócio</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-search feature-icon"></i>
+                            <h3>Busca Inteligente de Projetos</h3>
+                            <p>Nossa IA monitora as principais plataformas de freelancers, filtrando e apresentando apenas os projetos que realmente se encaixam no seu perfil e nas suas metas.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-file-alt feature-icon"></i>
+                            <h3>Geração de Propostas Otimizadas</h3>
+                            <p>Crie propostas personalizadas e persuasivas em segundos. A IA analisa o projeto e gera um texto que maximiza suas chances de ser contratado.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-comments feature-icon"></i>
+                            <h3>Qualificação de Leads Automática</h3>
+                            <p>Receba alertas sobre a intenção de contratação do cliente e use nossos scripts de IA para responder a perguntas iniciais, economizando seu tempo.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-chart-line feature-icon"></i>
+                            <h3>Análise de Mercado Competitiva</h3>
+                            <p>Entenda o que seus concorrentes estão fazendo. Obtenha insights sobre preços, prazos e abordagens mais eficazes para cada tipo de projeto.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-calendar-check feature-icon"></i>
+                            <h3>Agendamento Integrado</h3>
+                            <p>Conecte sua agenda e permita que clientes qualificados agendem reuniões diretamente com você, eliminando a troca de e-mails.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-shield-alt feature-icon"></i>
+                            <h3>Segurança e Privacidade</h3>
+                            <p>Seus dados e as informações dos clientes são tratados com a máxima segurança. Focamos em conformidade e proteção de dados em todas as etapas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works Section -->
+            <section id="how-it-works" class="features" style="background: var(--background);">
+                <div class="container">
+                    <h2 class="section-title">Como Funciona em 3 Passos Simples</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-user-cog feature-icon"></i>
+                            <h3>1. Configure Seu Perfil</h3>
+                            <p>Informe suas habilidades, nicho de mercado e o tipo de projeto que você deseja. Nossa IA aprende com suas preferências.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-magic feature-icon"></i>
+                            <h3>2. A IA Encontra e Propõe</h3>
+                            <p>A IA monitora, filtra e gera propostas otimizadas para os melhores projetos, enviando-as para sua aprovação final.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-handshake feature-icon"></i>
+                            <h3>3. Feche o Negócio</h3>
+                            <p>Você recebe o contato de clientes já qualificados e prontos para fechar. Foco total na execução do projeto.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta">
+                <h2 class="cta-title">Pronto para Multiplicar Seus Clientes?</h2>
+                <p class="cta-subtitle">Junte-se a centenas de freelancers que estão usando a IA para escalar seus negócios e recuperar seu tempo.</p>
+                <a href="#" class="btn btn-outline btn-lg" style="color: white; border-color: white;">
+                    <i class="fas fa-arrow-right"></i> Começar Agora
+                </a>
+            </section>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Freelancer AI. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Termos de Serviço</a>
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script to handle navigation if needed, though this is a single-page app
+        document.querySelectorAll('.nav-links a, .btn').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
