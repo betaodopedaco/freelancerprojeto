@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,228 @@
             padding: 0;
             box-sizing: border-box;
         }
+// ===== BACKEND CONNECTION =====
+const BACKEND_URL = 'https://seu-app.vercel.app'; // Mude quando fizer deploy
 
+// Connect signup form to backend
+async function handleSignup(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const niche = document.getElementById('niche').value;
+    const customNiche = document.getElementById('custom-niche').value;
+    
+    // Use custom niche if provided
+    const finalNiche = customNiche || niche;
+    
+    if (!email || !finalNiche) {
+        showNotification('Please fill all required fields', 'error');
+        return;
+    }
+    
+    try {
+        showNotification('Creating your account...');
+        
+        // Call backend register endpoint
+        const response = await fetch(`${BACKEND_URL}/api/auth/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: 'temp123456', // Mude isso depois
+                niche: finalNiche
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            showNotification('Account created! Redirecting to dashboard...');
+            
+            // Store user ID for later use
+            localStorage.setItem('userId', data.userId);
+            localStorage.setItem('userNiche', finalNiche);
+            
+            setTimeout(() => {
+                showPage('dashboard');
+                loadRecommendations();
+            }, 1000);
+        } else {
+            showNotification(data.error || 'Error creating account', 'error');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showNotification('Error connecting to server', 'error');
+    }
+}
+
+// Load recommendations from backend
+async function loadRecommendations() {
+    const userId = localStorage.getItem('userId');
+    const userNiche = localStorage.getItem('userNiche');
+    
+    if (!userId || !userNiche) {
+        showNotification('User not logged in', 'error');
+        return;
+    }
+    
+    try {
+        showNotification('Loading recommendations...');
+        
+        // Get user's location (simplified - using Austin, TX as default)
+        const lat = 30.2672;
+        const lon = -97.7431;
+        
+        // Call backend recommendations endpoint
+        const response = await fetch(`${BACKEND_URL}/api/recommendations`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId: userId,
+                niche: userNiche,
+                lat: lat,
+                lon: lon
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success && data.recommendations) {
+            // Display recommendations
+            displayRecommendations(data.recommendations);
+            showNotification(`Loaded ${data.count} recommendations!`);
+        } else {
+            showNotification('Error loading recommendations', 'error');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showNotification('Error loading recommendations', 'error');
+    }
+}
+
+// Display recommendations in dashboard
+function displayRecommendations(recommendations) {
+    const grid = document.querySelector('.recommendations-grid');
+    if (!grid) return;
+    
+    grid.innerHTML = ''; // Clear existing cards
+    
+    recommendations.forEach((company, index) => {
+        const card = document.createElement('div');
+        card.className = 'recommendation-card';
+        
+        const icon = getCompanyIcon(company.tipo);
+        
+        card.innerHTML = `
+            <div class="company-header">
+                <div class="company-avatar">
+                    <i class="${icon}"></i>
+                </div>
+                <div class="company-info">
+                    <h3>${company.nome}</h3>
+                    <span class="company-tag">${company.tipo}</span>
+                    <span class="company-location">
+                        <i class="fas fa-map-marker-alt"></i> ${company.localizacao.cidade || 'Location'}
+                    </span>
+                </div>
+                <div class="company-status">
+                    <span class="status new">NEW</span>
+                </div>
+            </div>
+            <div class="company-details">
+                <div class="detail-item">
+                    <i class="fas fa-phone"></i>
+                    <span>${company.contato.telefone || 'N/A'}</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-globe"></i>
+                    <span>${company.contato.website || 'N/A'}</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>${company.contato.email || 'N/A'}</span>
+                </div>
+            </div>
+            <div class="pitch-preview">
+                <p class="pitch-text">${company.pitch ? company.pitch.substring(0, 150) + '...' : 'Pitch not available'}</p>
+            </div>
+            <div class="card-actions">
+                <button class="btn btn-outline" onclick="copyPitchFromBackend('${company.pitch}')">
+                    <i class="far fa-copy"></i> Copy Pitch
+                </button>
+                <button class="btn btn-primary" onclick="generateContract('${company.nome}')">
+                    <i class="fas fa-file-contract"></i> View Contract
+                </button>
+                <button class="btn btn-success" onclick="markContacted(${index + 1})">
+                    <i class="fas fa-check"></i> Contacted
+                </button>
+            </div>
+        `;
+        
+        grid.appendChild(card);
+    });
+}
+
+// Copy pitch from backend
+function copyPitchFromBackend(pitch) {
+    if (pitch) {
+        copyToClipboard(pitch);
+    } else {
+        showNotification('Pitch not available', 'error');
+    }
+}
+
+// Generate contract from backend
+async function generateContract(companyName) {
+    const userNiche = localStorage.getItem('userNiche');
+    
+    try {
+        showNotification('Generating contract...');
+        
+        const response = await fetch(`${BACKEND_URL}/api/contracts/generate`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                niche: userNiche,
+                experience: '2 years'
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.contract) {
+            // Store contract and show page
+            localStorage.setItem('currentContract', data.contract);
+            localStorage.setItem('currentCompanyName', companyName);
+            showPage('contract');
+            showNotification('Contract ready!');
+        } else {
+            showNotification('Error generating contract', 'error');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showNotification('Error generating contract', 'error');
+    }
+}
+
+// Get company icon based on type
+function getCompanyIcon(tipo) {
+    const icons = {
+        'cafe': 'fas fa-coffee',
+        'restaurant': 'fas fa-utensils',
+        'shop': 'fas fa-store',
+        'office': 'fas fa-briefcase',
+        'default': 'fas fa-building'
+    };
+    
+    return icons[tipo] || icons['default'];
+}
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
