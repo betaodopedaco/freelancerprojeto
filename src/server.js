@@ -8,7 +8,9 @@ const corsOptions = {
     'http://localhost:3000',
     'http://localhost:3001',
     'https://freelancerprojeto.vercel.app',
+    'https://freelancer-novo.vercel.app',  // ADICIONA ESSA AQUI
     'https://freelancerprojeto-odwtjfx9t-betaodopedacos-projects.vercel.app',
+    'https://freelancer-novo-betaodopedacos-projects.vercel.app',  // E ESSA
     'https://betaodopedaco.github.io'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
