@@ -1,0 +1,51 @@
+const express = require('express');
+const router = express.Router();
+const { scrapeWebsite } = require('../utils/scraper');
+
+// Rota para scraping on-demand
+router.post('/contact', async (req, res) => {
+  try {
+    const { businessId, website, userId } = req.body;
+
+    if (!website) {
+      return res.status(400).json({
+        success: false,
+        error: 'Website URL is required'
+      });
+    }
+
+    console.log(`\n🔍 Scraping solicitado: ${website}`);
+
+    // Fazer scraping
+    const result = await scrapeWebsite(website);
+
+    if (result.success) {
+      res.json({
+        success: true,
+        data: {
+          email: result.email,
+          phone: result.phone,
+          allEmails: result.allEmails,
+          allPhones: result.allPhones
+        },
+        message: 'Contact information extracted successfully'
+      });
+    } else {
+      res.json({
+        success: false,
+        error: 'Could not extract contact information',
+        details: result.error
+      });
+    }
+
+  } catch (error) {
+    console.error('❌ Erro na rota de scraping:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error',
+      details: error.message
+    });
+  }
+});
+
+module.exports = router;
