@@ -6,15 +6,14 @@ const app = express();
 const corsOptions = {
   origin: [
     'http://localhost:3000',
-    'http://localhost:3001',
-    'https://freelancerprojeto.vercel.app',
-    'https://freelancer-novo.vercel.app',  // ADICIONA ESSA AQUI
-    'https://freelancerprojeto-odwtjfx9t-betaodopedacos-projects.vercel.app',
-    'https://freelancer-novo-betaodopedacos-projects.vercel.app',  // E ESSA
-    'https://betaodopedaco.github.io'
-    'https://tofind.online',
-    'https://www.tofind.online',
-    'http://localhost:3000',
+'http://localhost:3001',
+'https://freelancerprojeto.vercel.app',
+'https://freelancer-novo.vercel.app',
+'https://freelancerprojeto-odwtjfx9t-betaodopedacos-projects.vercel.app',
+'https://freelancer-novo-betaodopedacos-projects.vercel.app',
+'https://betaodopedaco.github.io',
+'https://tofind.online',
+'https://www.tofind.online'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
