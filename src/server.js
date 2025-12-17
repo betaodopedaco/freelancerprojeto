@@ -12,6 +12,9 @@ const corsOptions = {
     'https://freelancerprojeto-odwtjfx9t-betaodopedacos-projects.vercel.app',
     'https://freelancer-novo-betaodopedacos-projects.vercel.app',  // E ESSA
     'https://betaodopedaco.github.io'
+    'https://tofind.online',
+    'https://www.tofind.online',
+    'http://localhost:3000',
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
